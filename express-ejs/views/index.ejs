@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/style.css">
+
+  <title>InstaSam</title>
+</head>
+<body>
+
+  <div class="App">
+    
+    <div class="flex flex-col space-y-100 items-center divide-y">
+      
+      <a href="/newPost">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+        </svg>
+      </a>
+
+      <% for (let post of posts) { %>
+
+        <div class="px-5 py-14">
+
+
+          <div class="outline-1" style="width: 650px;"><!-- Single Post-->
+
+            <div class="flex flex-col space-y-2">
+
+              <!-- Avatar -->
+              <div class="flex flex-row items-center space-x-4 cursor-pointer active:opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer hover:text-gray-900 active:text-gray-700 h-14 w-14 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-lg  hover:underline">username</p>
+              </div>
+
+              <p class="text-base"><%=post.caption%></p>
+
+              <div class="flex flex-row items-end space-x-4 justify-center">
+
+
+                <img class="rounded" width="430" height="768" src="<%=post.imageUrl%>"></img>
+
+
+                <div class='flex flex-col space-y-4'>
+
+                  <!-- Likes -->
+                  <div class='flex flex-col items-center'>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer hover:text-gray-900 active:text-gray-700 h-14 w-14 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    <p><%=post.totalLikes%></p>
+                  </div>
+
+                  <!-- Comment -->
+                  <div class='flex flex-col items-center'>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="cursor-pointer hover:text-gray-900 active:text-gray-700 h-14 w-14 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    <p><%=post.totalComments%></p>
+                  </div>
+
+                  <!-- Edit -->
+                  <div class='flex flex-col items-center'>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer hover:text-gray-900 active:text-gray-700 h-14 w-14 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                  </div>
+
+                  <!-- Trash -->
+                  <div class='flex flex-col items-center'>
+                    <form action="/deletePost/<%=post.id%>" method="post">
+                      <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer hover:text-gray-900 active:text-gray-700 h-14 w-14 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    </form>
+                  </div>
+
+                </div> 
+
+              </div>
+
+            </div>
+          </div><!-- Single Post-->
+        </div>
+
+        <% } %>
+      </div>
+    </div>
+  
+</body>
+</html>

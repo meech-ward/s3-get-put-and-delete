@@ -1,0 +1,20 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Posts {
+  id            Int      @id @default(autoincrement())
+  imageName     String
+  caption       String
+  totalComments Int      @default(0)
+  totalLikes    Int      @default(0)
+  created       DateTime @default(now())
+}
